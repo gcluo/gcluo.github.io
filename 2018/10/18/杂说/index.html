@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="个人," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="个人博客">
-<meta name="keywords" content="lgc">
-<meta property="og:type" content="website">
-<meta property="og:title" content="lgc">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="关于博客，之前也写过一点，但是始终没有坚持下来。一是觉得墨水太少，怕辣到各位眼睛二是写起来也挺烦，自我督促能力不够强其实还是有必要写的，自我总结和学习嘛以前写过的一些前端的小菜鸡文章就删了现在开始写关于java的小菜鸡文章嗯，先这样，但愿可以坚持下去">
+<meta name="keywords" content="个人">
+<meta property="og:type" content="article">
+<meta property="og:title" content="杂说">
+<meta property="og:url" content="http://yoursite.com/2018/10/18/杂说/index.html">
 <meta property="og:site_name" content="lgc">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="关于博客，之前也写过一点，但是始终没有坚持下来。一是觉得墨水太少，怕辣到各位眼睛二是写起来也挺烦，自我督促能力不够强其实还是有必要写的，自我总结和学习嘛以前写过的一些前端的小菜鸡文章就删了现在开始写关于java的小菜鸡文章嗯，先这样，但愿可以坚持下去">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-18T08:06:40.907Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="lgc">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:title" content="杂说">
+<meta name="twitter:description" content="关于博客，之前也写过一点，但是始终没有坚持下来。一是觉得墨水太少，怕辣到各位眼睛二是写起来也挺烦，自我督促能力不够强其实还是有必要写的，自我总结和学习嘛以前写过的一些前端的小菜鸡文章就删了现在开始写关于java的小菜鸡文章嗯，先这样，但愿可以坚持下去">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/18/杂说/"/>
 
 
 
 
 
-  <title>lgc</title>
+  <title>杂说 | lgc</title>
   
 
 
@@ -144,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -218,134 +218,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/18/动态代理浅说/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="cong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="lgc">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/18/动态代理浅说/" itemprop="url">动态代理浅说</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-18T16:08:56+08:00">
-                2018-10-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>代理应该学习java的都不陌生了，不过之前我学习的时候倒是有疑问的，这么做到底意义在哪里？<br>它能帮我干些什么？</p>
-<h3 id="剥离非业务逻辑"><a href="#剥离非业务逻辑" class="headerlink" title="剥离非业务逻辑"></a>剥离非业务逻辑</h3><p>举个例子，例如事务，每次使用的时候都需要打开，然后提交等操作<br>这些操作如果在每次的业务线上去做的时候，这是一件繁琐的事情，业务代码的人也并不需要关心，对于他这个角色来说，<br>处理好业务代码应该就可以了。那这部分就可以使用代理让它去帮你完成这部分操作。<br>当然spring已经封装好了，没必要再实现一遍</p>
-<h3 id="制定通用的一些策略"><a href="#制定通用的一些策略" class="headerlink" title="制定通用的一些策略"></a>制定通用的一些策略</h3><p>其实这个很笼统，什么样的策略是通用，从业务上理解就是大部分场景需要这些操作，但是又不想多处维护，方式等也都比较统一</p>
-<h3 id="实现比较优雅的模式"><a href="#实现比较优雅的模式" class="headerlink" title="实现比较优雅的模式"></a>实现比较优雅的模式</h3><h3 id="JDK-Proxy"><a href="#JDK-Proxy" class="headerlink" title="JDK Proxy"></a>JDK Proxy</h3><p>这里其实有很多文章说明<br>实现接口 -&gt;  实现invocationHandler -&gt;  newProxyInstance  -&gt; invoke<br>newProxyInstance 这里会生成字节码 既然是动态代理总得有动态代理的意义 ^_^<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">byte[] proxyClassFile = ProxyGenerator.generateProxyClass(</span><br><span class="line">    	proxyName, interfaces.toArray(EMPTY_CLASS_ARRAY), accessFlags);</span><br><span class="line">try &#123;</span><br><span class="line">	Class&lt;?&gt; pc = UNSAFE.defineClass(proxyName, proxyClassFile,</span><br><span class="line">                                 	0, proxyClassFile.length,</span><br><span class="line">      	                           loader, null);</span><br><span class="line">	reverseProxyCache.sub(pc).putIfAbsent(loader, Boolean.TRUE);</span><br><span class="line">	return pc;</span><br><span class="line">&#125; catch (ClassFormatError e) &#123;</span><br><span class="line">// 如果出现 ClassFormatError，很可能是输入参数有问题，比如，ProxyGenerator 有 bug</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static Object newProxyInstance(ClassLoader loader,</span><br><span class="line">                                  	Class&lt;?&gt;[] interfaces,</span><br><span class="line">                                  	InvocationHandler h)</span><br></pre></td></tr></table></figure></p>
-<p>ASM是通过操作字节码来实现对结构的修改和包装的。<br>如：<a href="https://en.wikipedia.org/wiki/Visitor_pattern" target="_blank" rel="noopener">Visitor</a><br><a href="http://hg.openjdk.java.net/jdk/jdk/file/29169633327c/src/java.base/share/classes/java/lang/reflect/Proxy.java" target="_blank" rel="noopener">Jdk proxy</a></p>
-<h3 id="CGLIB"><a href="#CGLIB" class="headerlink" title="CGLIB"></a>CGLIB</h3><p>基于AMS的CGLIB，应该也没有人陌生<br>字节码生成子类 -&gt;  动态生成类和方法等-&gt; 包装父类和子类 -&gt; 索引代理方法和被代理方法 -&gt; 调用<br><a href="https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html" target="_blank" rel="noopener">字节码文档</a><br><a href="https://github.com/cglib/cglib/wiki/How-To#access-the-generated-byte-array-directly" target="_blank" rel="noopener">cglib</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -375,9 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/18/杂说/" itemprop="url">杂说</a></h1>
+          <h1 class="post-title" itemprop="name headline">杂说</h1>
         
 
         <div class="post-meta">
@@ -427,12 +300,8 @@
       
 
       
-        
-          
-            <p>关于博客，之前也写过一点，但是始终没有坚持下来。<br>一是觉得墨水太少，怕辣到各位眼睛<br>二是写起来也挺烦，自我督促能力不够强<br>其实还是有必要写的，自我总结和学习嘛<br>以前写过的一些前端的小菜鸡文章就删了<br>现在开始写关于java的小菜鸡文章<br>嗯，先这样，但愿可以坚持下去</p>
+        <p>关于博客，之前也写过一点，但是始终没有坚持下来。<br>一是觉得墨水太少，怕辣到各位眼睛<br>二是写起来也挺烦，自我督促能力不够强<br>其实还是有必要写的，自我总结和学习嘛<br>以前写过的一些前端的小菜鸡文章就删了<br>现在开始写关于java的小菜鸡文章<br>嗯，先这样，但愿可以坚持下去</p>
 
-          
-        
       
     </div>
     
@@ -447,14 +316,36 @@
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/个人/" rel="tag"># 个人</a>
+          
+        </div>
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/18/动态代理浅说/" rel="prev" title="动态代理浅说">
+                动态代理浅说 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </div>
@@ -464,10 +355,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -475,6 +367,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -680,6 +576,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
