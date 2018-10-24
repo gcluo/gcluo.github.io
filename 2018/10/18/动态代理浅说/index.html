@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="lgc">
 <meta property="og:description" content="代理应该学习java的都不陌生了，不过之前我学习的时候倒是有疑问的，这么做到底意义在哪里？它能帮我干些什么？ 剥离非业务逻辑举个例子，例如事务，每次使用的时候都需要打开，然后提交等操作这些操作如果在每次的业务线上去做的时候，这是一件繁琐的事情，业务代码的人也并不需要关心，对于他这个角色来说，处理好业务代码应该就可以了。那这部分就可以使用代理让它去帮你完成这部分操作。当然spring已经封装好了，没">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-18T09:20:26.030Z">
+<meta property="og:updated_time" content="2018-10-24T02:27:09.432Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态代理浅说">
 <meta name="twitter:description" content="代理应该学习java的都不陌生了，不过之前我学习的时候倒是有疑问的，这么做到底意义在哪里？它能帮我干些什么？ 剥离非业务逻辑举个例子，例如事务，每次使用的时候都需要打开，然后提交等操作这些操作如果在每次的业务线上去做的时候，这是一件繁琐的事情，业务代码的人也并不需要关心，对于他这个角色来说，处理好业务代码应该就可以了。那这部分就可以使用代理让它去帮你完成这部分操作。当然spring已经封装好了，没">
@@ -302,7 +302,7 @@
       
         <p>代理应该学习java的都不陌生了，不过之前我学习的时候倒是有疑问的，这么做到底意义在哪里？<br>它能帮我干些什么？</p>
 <h3 id="剥离非业务逻辑"><a href="#剥离非业务逻辑" class="headerlink" title="剥离非业务逻辑"></a>剥离非业务逻辑</h3><p>举个例子，例如事务，每次使用的时候都需要打开，然后提交等操作<br>这些操作如果在每次的业务线上去做的时候，这是一件繁琐的事情，业务代码的人也并不需要关心，对于他这个角色来说，<br>处理好业务代码应该就可以了。那这部分就可以使用代理让它去帮你完成这部分操作。<br>当然spring已经封装好了，没必要再实现一遍</p>
-<h3 id="制定通用的一些策略"><a href="#制定通用的一些策略" class="headerlink" title="制定通用的一些策略"></a>制定通用的一些策略</h3><p>其实这个很笼统，什么样的策略是通用，从业务上理解就是大部分场景需要这些操作，但是又不想多处维护，方式等也都比较统一</p>
+<h3 id="制定通用的一些策略"><a href="#制定通用的一些策略" class="headerlink" title="制定通用的一些策略"></a>制定通用的一些策略</h3><p>其实这个很笼统，什么样的策略是通用，从业务上理解就是大部分场景需要这些操作，但是又不想多处维护，方式等也都比较统一的策略</p>
 <h3 id="实现比较优雅的模式"><a href="#实现比较优雅的模式" class="headerlink" title="实现比较优雅的模式"></a>实现比较优雅的模式</h3><h3 id="JDK-Proxy"><a href="#JDK-Proxy" class="headerlink" title="JDK Proxy"></a>JDK Proxy</h3><p>这里其实有很多文章说明<br>实现接口 -&gt;  实现invocationHandler -&gt;  newProxyInstance  -&gt; invoke<br>newProxyInstance 这里会生成字节码 既然是动态代理总得有动态代理的意义 ^_^<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">byte[] proxyClassFile = ProxyGenerator.generateProxyClass(</span><br><span class="line">    	proxyName, interfaces.toArray(EMPTY_CLASS_ARRAY), accessFlags);</span><br><span class="line">try &#123;</span><br><span class="line">	Class&lt;?&gt; pc = UNSAFE.defineClass(proxyName, proxyClassFile,</span><br><span class="line">                                 	0, proxyClassFile.length,</span><br><span class="line">      	                           loader, null);</span><br><span class="line">	reverseProxyCache.sub(pc).putIfAbsent(loader, Boolean.TRUE);</span><br><span class="line">	return pc;</span><br><span class="line">&#125; catch (ClassFormatError e) &#123;</span><br><span class="line">// 如果出现 ClassFormatError，很可能是输入参数有问题，比如，ProxyGenerator 有 bug</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static Object newProxyInstance(ClassLoader loader,</span><br><span class="line">                                  	Class&lt;?&gt;[] interfaces,</span><br><span class="line">                                  	InvocationHandler h)</span><br></pre></td></tr></table></figure></p>
 <p>ASM是通过操作字节码来实现对结构的修改和包装的。<br>如：<a href="https://en.wikipedia.org/wiki/Visitor_pattern" target="_blank" rel="noopener">Visitor</a><br><a href="http://hg.openjdk.java.net/jdk/jdk/file/29169633327c/src/java.base/share/classes/java/lang/reflect/Proxy.java" target="_blank" rel="noopener">Jdk proxy</a></p>
 <h3 id="CGLIB"><a href="#CGLIB" class="headerlink" title="CGLIB"></a>CGLIB</h3><p>基于AMS的CGLIB，应该也没有人陌生<br>字节码生成子类 -&gt;  动态生成类和方法等-&gt; 包装父类和子类 -&gt; 索引代理方法和被代理方法 -&gt; 调用<br><a href="https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-4.html" target="_blank" rel="noopener">字节码文档</a><br><a href="https://github.com/cglib/cglib/wiki/How-To#access-the-generated-byte-array-directly" target="_blank" rel="noopener">cglib</a></p>
@@ -345,6 +345,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/24/nginx事件机制/" rel="prev" title="nginx事件机制">
+                nginx事件机制 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -421,7 +425,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -434,7 +438,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
