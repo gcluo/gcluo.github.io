@@ -233,6 +233,141 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/14/网站演进/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lgc">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/14/网站演进/" itemprop="url">网站演进</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-14T15:32:56+08:00">
+                2018-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###初始阶段网站架构<br>应用程序、数据库、文件系统都在一台服务器上，开搞</p>
+<p>###应用服务和数据分离<br>应用程序单节点在单独的服务器上，数据库、文件系统分别在别的服务器上</p>
+<p>###缓存改善<br>缓存热点数据，应用程序访问分布式缓存、或者本地缓存来提高性能</p>
+<p>###应用服务器集群化<br>当单台应用服务器满足不了性能需求之后，通过扩展应用服务，来进行伸缩，挂载负载均衡服务器来提供高性能的服务</p>
+<p>###数据库读写分离<br>应用程序读操作会读取只读数据库，写操作时写入写数据库，读写实现主从复制，从而提高性能</p>
+<p>###反向代理和CDN技术<br>为了加快网站的访问，可以使用反向代理和cdn，它们的基本原理都是缓存，区别在于cdn部署在网络提供商的机房，可以让用户从离自己最近的网络机房获取数据。反向代理是部署在自己的中心机房，当发现有数据的时候，直接返回，不访问应用服务器。</p>
+<p>###分布式数据库和分布式文件系统<br>分布式数据库是网站数据库拆分的最后手段，只有在单表数据非常大的时候，并且没有什么很好的解决方案的时候才会考虑去做。不到万不得已的时候，网站更常用的拆分手段是按业务分库，不同的业务数据库部署在不同的服务器。</p>
+<p>###nosql和搜索引擎<br>当网站的存储和检索需求越来越复杂时，应用程序访问统一的数据访问模块，减轻应用程序管理多数据源的麻烦。</p>
+<p>###业务拆分<br>对应用程序进行业务拆分，业务之间通过消息服务、网络等进行数据分发和存储</p>
+<p>###业务抽象<br>对不同的业务，分别进行高度抽象，聚合业务，独立部署，通过分布式调度完成整体业务线</p>
+<p>##演进小结<br>不论是怎么演进，任何网站都是从小到大，没有一蹴而就的大型网站。业务与技术的相互性，业务到一定的程度会成就技术，技术的进度反之推动业务增长，提高效率等。做出最适合目前的业务的技术架构才是最合适的，随着发展慢慢的增长和扩大，更是一个健康的发展规律。</p>
+<p>##架构模式</p>
+<p>###分层<br>分层是单一职责的体现，尽量让项目可维护和结构化，保证业务逻辑清晰。一般来讲，计算机世界，加一层可以解决很多问题，但是也会带来一些问题，具体要在项目中去权衡利弊，总归人生都是博弈，没有博弈的架构也缺少了很多刺激。</p>
+<p>###分割<br>保证业务的保持在一定的颗粒度和可维护性</p>
+<p>###分布式<br>分割和分层之后才更利于多部署，保证更高的可用性能，提供更可靠的服务。<br>综合考量分布式的适用情况，因为分布式也会有别的情况产生，分布式后服务调用必然通过网络，<br>这可能对性能开销也是有影响的，服务器越来越多，维护和管理也是个问题。<br>应用本身，在分布式上也存在着很多问题，不要为了分布式而分布式。<br>分布式：<br>分布式应用和服务<br>分布式静态资源<br>分布式数据和存储<br>分布式计算</p>
+<p>###架构要素<br>1.性能<br>2.可用性  4个9？哈哈哈<br>3.伸缩性<br>4.扩展性<br>5.安全性</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/24/nginx事件机制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -642,7 +777,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
