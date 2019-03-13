@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网络," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="网络分层12345应用层: DHCP、HTTP、HTTPS、RTMP、P2P、DNS、GTP、RPC传输层: UDP、TCP网络层: ICMP、IP、OSPF、BGP、IPSEC、GRE数据链路层: ARP、VLAN、STP物理层: 网络跳线 协议套件 举例网络正常传输过程1.一个请求从浏览器请求服务器时，服务器收到了浏览器的请求后2.内容、http头、tcp头、ip头、mac头被包装后进行发送3">
+<meta name="keywords" content="网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络基础">
+<meta property="og:url" content="http://yoursite.com/2019/02/13/网络基础/index.html">
+<meta property="og:site_name" content="怪力">
+<meta property="og:description" content="网络分层12345应用层: DHCP、HTTP、HTTPS、RTMP、P2P、DNS、GTP、RPC传输层: UDP、TCP网络层: ICMP、IP、OSPF、BGP、IPSEC、GRE数据链路层: ARP、VLAN、STP物理层: 网络跳线 协议套件 举例网络正常传输过程1.一个请求从浏览器请求服务器时，服务器收到了浏览器的请求后2.内容、http头、tcp头、ip头、mac头被包装后进行发送3">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/02/13/网络基础/网络传输过程.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/02/13/网络基础/MAC网络包格式.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/02/13/网络基础/ARP包详情.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/02/13/网络基础/VLAN.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/02/13/网络基础/ip_mac_header.jpg">
+<meta property="og:updated_time" content="2019-03-13T09:45:33.885Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络基础">
+<meta name="twitter:description" content="网络分层12345应用层: DHCP、HTTP、HTTPS、RTMP、P2P、DNS、GTP、RPC传输层: UDP、TCP网络层: ICMP、IP、OSPF、BGP、IPSEC、GRE数据链路层: ARP、VLAN、STP物理层: 网络跳线 协议套件 举例网络正常传输过程1.一个请求从浏览器请求服务器时，服务器收到了浏览器的请求后2.内容、http头、tcp头、ip头、mac头被包装后进行发送3">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/13/网络基础/网络传输过程.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/13/网络基础/"/>
+
+
+
+
+
+  <title>网络基础 | 怪力</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">怪力</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/13/网络基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="怪力">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="怪力">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">网络基础</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-13T10:36:33+08:00">
+                2019-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">应用层: DHCP、HTTP、HTTPS、RTMP、P2P、DNS、GTP、RPC</span><br><span class="line">传输层: UDP、TCP</span><br><span class="line">网络层: ICMP、IP、OSPF、BGP、IPSEC、GRE</span><br><span class="line">数据链路层: ARP、VLAN、STP</span><br><span class="line">物理层: 网络跳线</span><br></pre></td></tr></table></figure>
+<p><a href="https://zh.wikipedia.org/wiki/TCP/IP%E5%8D%8F%E8%AE%AE%E6%97%8F" target="_blank" rel="noopener">协议套件</a></p>
+<h3 id="举例网络正常传输过程"><a href="#举例网络正常传输过程" class="headerlink" title="举例网络正常传输过程"></a>举例网络正常传输过程</h3><p>1.一个请求从浏览器请求服务器时，服务器收到了浏览器的请求后<br>2.内容、http头、tcp头、ip头、mac头被包装后进行发送<br>3.首先被摘掉的是mac头、ARP会发出广播查看这个包能被哪位仁兄接收<br>4.当包被下层接收后，会取下ip头查看是否是发给我自己的，如果是就留下，不是就进行转发<br>5.如果是自己的，则丢给应用，因为tcp里面有端口号<br>6.这个应用估计就是个浏览器了，取下http头，根据内容展示相应的内容<br><a href="https://zh.wikipedia.org/wiki/%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%8F%E8%AE%AE" target="_blank" rel="noopener">参考资料 ARP</a></p>
+<p><img src="/2019/02/13/网络基础/网络传输过程.jpg" alt=""><br>总结:层与层的关系更是包含关系，每层其实都是完整的包，只是每层对应做的事情不一样而已。可以没有上层，但是不能没有下层。</p>
+<p>但是这样还有很多问题，比如<br>1.ARP只能支持同一个网段的通信<br>2.IP地址是怎么来的，又是怎么没的<br>3.等等…</p>
+<h3 id="媒体访问控制-MAC"><a href="#媒体访问控制-MAC" class="headerlink" title="媒体访问控制 MAC"></a>媒体访问控制 MAC</h3><p>当电脑配置好ip地址，通过集线器连接之后，就能正常广播网络包了，<br>但是这里不能乱，要制定收发的规则（谁先发，谁后发等。），错误处理等等，这就需要MAC来解决。这里有个名词叫做<strong>多路访问</strong>。至于发给谁，谁接收，就需要mac地址来解决，这玩意号称全世界唯一不重复。类似于身份证。在发送的时候，带上目标的MAC地址和源MAC地址，以及相应的类型（ARP;IP数据报），就能被收到了。还有一个问题，就是在以太网中，知道了ip地址，确不知道mac地址，那怎么办，这里就需要ARP，广播出去，谁是这个ip的，谁来回答，收到回到后，将包发送过去。然后将目标ip和mac缓存起来。<br><img src="/2019/02/13/网络基础/MAC网络包格式.jpg" alt=""><br><img src="/2019/02/13/网络基础/ARP包详情.jpg" alt=""><br>总结下：<br>1、mac层主要解决了多路访问控制，接收靠的是网络格式<br>2、ARP主要是广播形式</p>
+<h3 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h3><p>linux有自己设置ip的命名，比如ifconfig。<br>但是也不是怎么配置都可以的，如果配置的ip不正确，容易造成网络包发送不出去。<br>比如身处网络192.168.1.x的网络环境，私自将ip配置了10.100.158.47，如果需要将网络包发送到192.168.1.x上，网络包是出不去的。首先这里不知道目标的mac的地址，跨网段调用需要网关，还需要配置网关的地址，才能将包发到对应的机器上。<br>所以配置ip是一件比较麻烦的事情，才有了dhcp简称动态主机配置协议。<br>dhcp的工作方式大概是这样的，当需要加入这个网路的时候，但是确没有ip地址，则会发送bootR(bootRequest)以0.0.0.0的ip地址，发送目标地址255.255.255.255,带着自己的mac地址以广播的形式发送，这时，如果有存在dhcp server就会有相应，将加入的机器的回应以广播的形式再发送回去，还将子网掩码、网关、ip地址租用期等信息返回。如果存在多个dhcp server，一般会取收到的第一个作为回应，同样是个广播，等dhcp server确认后，才确定了信息，可以进行联网访问。</p>
+<h3 id="网络拓扑结构"><a href="#网络拓扑结构" class="headerlink" title="网络拓扑结构"></a>网络拓扑结构</h3><p>简单来说，是因为局域网与局域网之间互相连接形成的比较复杂化的网络结构。交换机通过广播方式学习到网络拓扑结构。<br>网络环路的产生：机器ARP发出去的包，分别被多个交换机学，交换机在收到机器自身发送的ARP包和别的交换机发送的ARP包对应的网口位置不同造成了学习混乱，不停地发送ARP。<br>环路解决： STP协议，会根据BPDU，把其中的线路切断只保留单个交换机的链路，拆条环形后基本也就是树形结构，简称生成树协议<br>STP协议：<br><a href="https://zh.wikipedia.org/wiki/%E7%94%9F%E6%88%90%E6%A0%91%E5%8D%8F%E8%AE%AE" target="_blank" rel="noopener">STP介绍</a><br>广播问题和安全：<br>如果网络广播都是全链路发送的话，如果导致一些机密的信息被抓包，会产生一些隐患。<br><a href="https://zh.wikipedia.org/wiki/%E8%99%9A%E6%8B%9F%E5%B1%80%E5%9F%9F%E7%BD%91" target="_blank" rel="noopener">VLAN</a><br>需要交换机支持VLAN,而层头协议上会增加一个tag字段，里面新增了vlanID，这样交换机就知道数据包发到哪里了。<br><img src="/2019/02/13/网络基础/VLAN.jpg" alt=""></p>
+<h3 id="联网"><a href="#联网" class="headerlink" title="联网"></a>联网</h3><p>mac ip 头<br><img src="/2019/02/13/网络基础/ip_mac_header.jpg" alt=""><br>其实在我看来，联网其实是个查找的过程。了解下NAT<br><a href="https://zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2" target="_blank" rel="noopener">NAT</a>,<br>在整个过程中，数据需要被一次又一次的转发.<br>例：<br>设备A的ip地址是192.168.1.101需要连到设备B 192.168.5.11<br>首先A、B不在一个局域网，A将包发出去，需要经过路由器转发，一般路由器的地址为该网段的第一个或者第二个<br>1.通过ARP，获取路由器连接在该设备A的端口的MAC地址<br>2.得知目标mac地址之后，发送数据包<br>3.路由器需要判断下一跳从哪里发出去，得知之后，ARP获取下一跳的MAC地址，替换目标MAC地址为下一跳<br>4.NAT改变源MAC地址和源IP地址的公网身份<br>5.反复步骤3，设备B收到数据包</p>
+<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><p>路由需要学习，选择最短的路径自然能提高网络传输的速度,路由器与路由器之间通过相互传递，构建网络图，寻找最短距离。<br>基于bellman-ford的<a href="https://en.wikipedia.org/wiki/Distance-vector_routing_protocol" target="_blank" rel="noopener">距离矢量路由算法</a><br>基于dijkstra<a href="https://en.wikipedia.org/wiki/Link-state_routing_protocol" target="_blank" rel="noopener">链路状态路由算法</a><br>动态路由协议:<br>OSPF:<a href="https://zh.wikipedia.org/wiki/%E5%BC%80%E6%94%BE%E5%BC%8F%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E4%BC%98%E5%85%88" target="_blank" rel="noopener">开放式最短路径优先</a><br>一般用于内部网络,基于链路状态路由算法。<br>BGP:<a href="https://baike.baidu.com/item/%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE" target="_blank" rel="noopener">外网路由协议</a><br>用于外部网络，基于距离矢量路由算法。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/网络/" rel="tag"># 网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/25/关于生病/" rel="next" title="关于生病">
+                <i class="fa fa-chevron-left"></i> 关于生病
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">怪力</p>
+              <p class="site-description motion-element" itemprop="description">个人博客</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络分层"><span class="nav-number">1.</span> <span class="nav-text">网络分层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#举例网络正常传输过程"><span class="nav-number">1.1.</span> <span class="nav-text">举例网络正常传输过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#媒体访问控制-MAC"><span class="nav-number">1.2.</span> <span class="nav-text">媒体访问控制 MAC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DHCP"><span class="nav-number">1.3.</span> <span class="nav-text">DHCP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络拓扑结构"><span class="nav-number">1.4.</span> <span class="nav-text">网络拓扑结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#联网"><span class="nav-number">1.5.</span> <span class="nav-text">联网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由"><span class="nav-number">1.6.</span> <span class="nav-text">路由</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">怪力</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
