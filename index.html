@@ -233,6 +233,259 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/22/account/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="怪力">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="怪力">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/22/account/" itemprop="url">account</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-22T16:19:00+08:00">
+                2019-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在去年的时候做了用户虚拟账户的设计，后来接手订单后，断断续续订单出了很多事情，相反账户好像很稳，就算在订单出现问题的情况下，也没有让公司产生损失，总结下账户的一些情况。</span><br></pre></td></tr></table></figure>
+<h2 id="基于TCC的账户设计"><a href="#基于TCC的账户设计" class="headerlink" title="基于TCC的账户设计"></a>基于TCC的账户设计</h2><p>账户本身是个金融性很强的操作，公平和稳定才是最大的成功，两段式提交可以尽量保证账户的稳定性。并且就算再出现情况下，也不至于让公司损失资产。<br>因为账户本身是依赖订单的成功性的，在最终一致性的要求下，需要有可变的账户流水状态进行预扣和返还，同时流水还需要记录账户的变动，包括总金额、每个账户的当前余额、消费额度、以及期末余额，不要觉得没必要记录那么多，当排查问题的时候，你会发现很多好处，记录一目了然，就算真的出现问题，重新扣回来也不是问题。</p>
+<p>预扣款：当下单时，订单服务会发送相应的扣款金额，扣款账户等进行预扣款。<br>扣款：当订单成功时，订单服务会发送相应异步消息，收到消息后，对相应的订单服务进行二次确认，在一系列确认完成之后，进行变更状态操作，这个时候才能算一笔流水成功入库，继续通知相关业务服务进行下一步操作。<br>返还：一般预扣款之后，会有延迟任务进行返回操作，比如1分钟内，如果订单还是未被确认的，就需要再次确认订单服务的订单是否还是有效订单，把相应的钱款返回到账户，当然这里和订单机制有关，有些系统的设计是订单有效期内，下单还是会返回当前订单的，这里就需要相应的服务进行方案确认了。</p>
+<p>预扣款的时候排队扣款问题：预扣款应当是同步和幂等的，不会对相同的订单重复扣款，对于用户来讲扣款应该是有序的<br>扣款：扣款应该是经过准确校验的、幂等的同一个订单不能扣款两次<br>返还：返还的时候必须要确认订单的相关信息，看看到底是返还是扣款，同样这里也是需要幂等的</p>
+<p>当然还有很多的账户功能，就不在这里做叙述了，主要是为了描述一些TCC的设计。</p>
+<h2 id="订单和账户的对账"><a href="#订单和账户的对账" class="headerlink" title="订单和账户的对账"></a>订单和账户的对账</h2><p>对账可以帮忙发现很多问题，不管是订单的还是账户，如果两边收入支出不平衡，可以发现一些错误的订单或者账户流水。<br>可以发现问题的方式都是好方式，不管是从财务上还是从技术本身。<br>对账就需要设计相应的流水记录，每个项目的对账方式可能都有不同的地方，所以在设计账户流水的尽量将对账的相关考虑进去。</p>
+<h2 id="报警和日志"><a href="#报警和日志" class="headerlink" title="报警和日志"></a>报警和日志</h2><p>相关的报警和日志还是比不可缺的，没有相关健全的保障措施，会让查找问题和排除等有很大的局限性，没有及时发现问题的措施，会让损失持续扩大化，可能最后不得不停服务采取这样的措施来解决。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/19/applePay/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="怪力">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="怪力">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/19/applePay/" itemprop="url">applePay</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-19T14:10:07+08:00">
+                2019-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="苹果支付的一些问题"><a href="#苹果支付的一些问题" class="headerlink" title="苹果支付的一些问题"></a>苹果支付的一些问题</h2><p>1.苹果支付的传递只能通过app本身传递，存在了很多的不确定性，在应用崩溃等情况时，会丢失订单号<br>2.传输问题，app客户单的网略情况没有服务器的传输稳定，在网络波动的情况下，会出现接收不到验证信息的情况<br>3.服务器向苹果验证时的网络问题，这里概率不是很高，但是偶尔也是有的，验证会有超时等等的现象<br>4.苹果服务器返回问题，偶尔存在服务器返回的时候，丢失了一部校验数据<br>5.订单返回商品存在多个订单的商品信息，连续多次下单或者曾经订单处理不及时的情况下，苹果会存在合并订单的情况</p>
+<h2 id="针对苹果订单的一些处理"><a href="#针对苹果订单的一些处理" class="headerlink" title="针对苹果订单的一些处理"></a>针对苹果订单的一些处理</h2><p>1.对于丢失订单号的情况，需要针对用户本身获取相应订单，验证订单商品一致，对商品等校验后，将相应权益给到用户账户<br>2.保证重试，这里有两个地方，app与服务器之间的重试，服务器与苹果服务器之间的重试。<br>与app协定重试策略，让app添加定时器，每隔一段时间重试一次，并有一个最终重试机制。超过最终重试之后，每次app打开的时候验证向服务端验证等。<br>服务器验证方面则需要在网络错误的情况下记录到库，后续去做重试操作，最好标记次数等。<br>3.苹果存在合并订单的情况，需要去查询用户购买的相关产品，做好产品编号和交易号的校验，进行异步补偿处理。（ps:谁也不知道接手的项目之前卖过什么类型的商品）</p>
+<h2 id="事务问题"><a href="#事务问题" class="headerlink" title="事务问题"></a>事务问题</h2><p>订单情况下，事务问题有时候排查起来比较困难，特别又涉及了分布式调用情况。<br>1.事务拆分，尽量不要在订单流程中使用大事务，如果有大事务，尽量拆分到不同的小事务<br>2.事务引发的脏读问题，因为事务本身具有隔离性，当事务没有提交的时候，会导致读取的情况不一样，<br>在订单的强一致性下，这样的情况显然不能接受。可以在拆分细的事务后，使用高可用消息中间件，解决最终一致性问题</p>
+<h2 id="缓存问题"><a href="#缓存问题" class="headerlink" title="缓存问题"></a>缓存问题</h2><p>在和订单相关的服务调用的时候容易产生，特别在和事务的情况融在一起时，就更加复杂。我刚接手代码的时候，很多地方的写法都排除了这样的况，导致问题出现频繁，但是对于缓存的情况，并没有通用的解决方案，只能在相应的情况下做出处理。</p>
+<h2 id="异步化问题"><a href="#异步化问题" class="headerlink" title="异步化问题"></a>异步化问题</h2><p>1.异步是个通用的解决模型，能通过异步消息解决很多问题。比如账户和订单之间。<br>这里要说的是异步化不要在事务中进行，我早期接手代码的时候，发现很多消息竟然是嵌入在事务里面的，<br>这里就为消息本身带来很多不确定性，发送应该在事务完整结束之后。</p>
+<h2 id="幂等"><a href="#幂等" class="headerlink" title="幂等"></a>幂等</h2><p>保证幂等是基本要求</p>
+<h2 id="分布式问题"><a href="#分布式问题" class="headerlink" title="分布式问题"></a>分布式问题</h2><p>需要处理好对于分布式相关的调用问题，以及分布式锁使用的情况</p>
+<h2 id="订单情况排查"><a href="#订单情况排查" class="headerlink" title="订单情况排查"></a>订单情况排查</h2><p>日志入库：相应的关键位置的日志应该入库操作，毕竟是涉及用户金钱的，相关位置还是要记录一下的<br>报警：接入相应的监控，当出现问题时，可以及时的处理，不造成损失扩大<br>这里具体的方案应该每个公司都会有一些相应的基础设施，可以对接相应的部门获取，如果是一些创业型公司，可以用db、邮件服务等再相关位置做发送也是可以的。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/13/网络基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1028,7 +1281,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1041,7 +1294,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
