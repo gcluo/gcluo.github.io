@@ -233,6 +233,130 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/20/中台/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="怪力">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="怪力">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/20/中台/" itemprop="url">中台</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-20T14:32:08+08:00">
+                2019-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">最近在做关于一些中台的项目，总结下</span><br><span class="line">1.定义中台</span><br><span class="line">2.关于中台的设计</span><br><span class="line">3.关于中台的使用</span><br><span class="line">4.中台的后续沉淀</span><br></pre></td></tr></table></figure>
+<h2 id="1-定义中台"><a href="#1-定义中台" class="headerlink" title="1.定义中台"></a>1.定义中台</h2><p>刚准备做中台的时候，其实不是很明白，所谓的中台的到底是指的是什么？然后团队的小伙伴们，一起去看了一些关于中台的书，其中就有包括阿里的那本。<br>当然书是书，具体理解的时候还是不一样的。而且随着业务的不同，中台的一些模式也就不同。<br>1.业务接入：针对业务，以及一些业务调研场景，首先要思考的是中台的一些能力，具体需要提供哪些能力来服务不同的系统，以及如何满足系统的差异化。<br>2.基本能力：当时我们讨论了很久，讨论过程中涉及了很多具体的业务方式，发现很多的业务方式实现各有不同，最后只是沉淀了通用的过程，比如相对于考试中台来说，创建卷面、卷面实力、作答、通用性的作答分析、以及一些数据开放、还有基本的数据切分维度等等。<br>3.系统聚合：对于中台来说，最大的作用是聚合，聚合系统中的共性存在，剥离不同的业务方式，同时降低系统接入成本，对于业务来说，有了更好的使用方式之后，<br>之后使用的业务增多，再去继续考虑共性抽象。<br>4.中台和saas: 中台和sass其实不冲突，可以理解为两个维度，一个是公用的抽象，一个是提供不同的业务服务。</p>
+<h2 id="2-关于中台的设计"><a href="#2-关于中台的设计" class="headerlink" title="2.关于中台的设计"></a>2.关于中台的设计</h2><p>首先中台不会直接对外暴露，这是出于系统安全的角度考虑的。但是又要方便快捷的对接各个业务方，所以中台上层需要对接网关，网关做相应的验签、用户等校验。<br>1.接入管理：因为需要对外接入，所以中台自然而然需要有一个接入管理，以及按接入方维度的数据吞吐的设计。<br>2.验签：对于验签，其实是一个通用的逻辑，无非就是根据一些头信息、随机串、参数等等生成一些安全串，然后由被调用方去校验正确性。这里可以抽离成公共包，供业务方使用。<br>3.调用方sdk：中台需要抽离公共的sdk给其他业务使用，sdk里集成了一些公共的接口，以及一些模型校验等，不同的业务方只需要简单引入就能实现对接。<br>4.便捷的文档：中台需要提供相应的说明，并且长期维护，告知中台对接信息，以及一些注意事项。</p>
+<h2 id="3-关于中台的使用"><a href="#3-关于中台的使用" class="headerlink" title="3.关于中台的使用"></a>3.关于中台的使用</h2><p>1.业务化： 中台只是抽离了各个系统间，重合度较高，相对稳定的一些功能，但是到具体业务中，还是存在着部分差异化，<br>在使用的过程中，需要业务根据自身的情况进行调整，到底是直接使用，还是进行二次封装，可以自己考量。<br>2.使用方式： 对于使用方来说，中台应该是个黑盒子，直接使用就行，不用去管具体细节。所以对于中台本身来说应该要考虑到使用方的一些在使用上的特点。</p>
+<h2 id="4-中台的后续沉淀"><a href="#4-中台的后续沉淀" class="headerlink" title="4.中台的后续沉淀"></a>4.中台的后续沉淀</h2><p>由于在中台的路上也才刚刚开始，期待后面接入的业务方的数量的增多，以及各种业务的滋养，会使用中台更加多姿多彩</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/22/account/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1281,7 +1405,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
